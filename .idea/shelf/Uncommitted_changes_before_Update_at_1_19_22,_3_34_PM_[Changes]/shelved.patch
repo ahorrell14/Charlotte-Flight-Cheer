@@ -1,0 +1,43 @@
+Index: index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Charlotte Flight Competitive Cheerleading</title>\n</head>\n<body>\n <h1>Hi</h1>\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/index.html b/index.html
+--- a/index.html	(revision 927a85042c3c2b3912811250df1e81098fc7df7a)
++++ b/index.html	(date 1642624434914)
+@@ -2,9 +2,9 @@
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+-    <title>Charlotte Flight Competitive Cheerleading</title>
++    <title>Title</title>
+ </head>
+ <body>
+- <h1>Hi</h1>
++
+ </body>
+ </html>
+\ No newline at end of file
+Index: index2.html
+===================================================================
+diff --git a/index2.html b/index2.html
+deleted file mode 100644
+--- a/index2.html	(revision 927a85042c3c2b3912811250df1e81098fc7df7a)
++++ /dev/null	(revision 927a85042c3c2b3912811250df1e81098fc7df7a)
+@@ -1,10 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="en">
+-<head>
+-    <meta charset="UTF-8">
+-    <title>Cheer</title>
+-</head>
+-<body>
+-
+-</body>
+-</html>
+\ No newline at end of file
+diff --git a/main.css b/main.css
+deleted file mode 100644

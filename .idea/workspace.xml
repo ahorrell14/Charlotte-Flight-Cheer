@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae51467a-570b-42cf-9508-1929e5134a79" name="Changes" comment="">
+    <list default="true" id="ae51467a-570b-42cf-9508-1929e5134a79" name="Changes" comment="Create connections and newConnection HTML">
+      <change afterPath="$PROJECT_DIR$/connections.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/newConnection.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -56,7 +59,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1642622780530</updated>
-      <workItem from="1642622783111" duration="3550000" />
+      <workItem from="1642622783111" duration="3598000" />
+      <workItem from="1642702494596" duration="1051000" />
+      <workItem from="1642703852653" duration="628000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1642623254691</created>
@@ -135,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642626486424</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update html and css">
+      <created>1642626599288</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1642626599288</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +163,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="push to git" />
@@ -161,6 +174,7 @@
     <MESSAGE value="add css" />
     <MESSAGE value="update html and add logo to files" />
     <MESSAGE value="update html and css" />
-    <option name="LAST_COMMIT_MESSAGE" value="update html and css" />
+    <MESSAGE value="Create connections and newConnection HTML" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create connections and newConnection HTML" />
   </component>
 </project>

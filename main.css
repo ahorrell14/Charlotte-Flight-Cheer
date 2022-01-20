@@ -1,20 +1,48 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: Futura;
+}
+body{
+
 }
 header, footer{
-    background-color: darkgray;
-    padding: 0px;
-    margin: 0px;
+    background-color: #203c49;
+}
+footer{
+    bottom: 0;
+    position: absolute;
+    color: white;
+    padding: 20px;
+    width: 100%;
 }
 img{
     border: 3px solid white;
     border-radius: 4px;
-    width: 200px;
+    width: 150px;
     margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-nav{
-
+nav a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+#topNav{
+    text-align: right;
+    padding-right: 30px;
+    padding-bottom: 15px;
+}
+#lowerNav{
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+hr{
+    background-color: white;
+    height: 3px;
+}
+.active{
+    color: #289dd2;
 }

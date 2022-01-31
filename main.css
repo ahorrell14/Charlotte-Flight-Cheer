@@ -8,10 +8,15 @@ header, footer{
 }
 footer{
     bottom: 0;
+    left: 0;
     position: absolute;
-    color: white;
+    color: #289dd2;
     padding: 20px;
     width: 100%;
+    text-align: center;
+}
+#footScroll{
+    position: relative;
 }
 img{
     border: 3px solid white;
@@ -45,9 +50,41 @@ hr{
 .active{
     color: #289dd2;
 }
-p{
-    margin-left: 30px;
+nav a:hover {
+    color: #289dd2;
+}
+main p, h2{
+    margin-left: 60px;
     margin-top: 40px;
     color: #289dd2;
     margin-right: 30px;
+}
+p a{
+    margin-left: 80px;
+    color: #289dd2;
+    margin-top: 20px;
+    text-decoration: none;
+}
+#connections a:hover{
+    color: #203c49;
+}
+#connectionInformation{
+    text-align: center;
+}
+#connectionInformation p{
+    float: right;
+    padding-right: 40px;
+}
+#connectionInformation button{
+    background-color: #203c49;
+    color: #289dd2;
+    padding: 5px;
+    margin: 20px;
+}
+#connectionInformation img{
+    float: left;
+    margin-left: 250px;
+    width: 200px;
+    border: 5px solid #203c49;
+    padding: 8px;
 }

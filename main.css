@@ -13,7 +13,7 @@ footer{
     color: #289dd2;
     padding: 20px;
     width: 100%;
-    text-align: center;
+    float: left;
 }
 #footScroll{
     position: relative;
@@ -87,4 +87,37 @@ p a{
     width: 200px;
     border: 5px solid #203c49;
     padding: 8px;
+}
+#newConnection h2, #newConnection h3{
+    color: #289dd2;
+    text-align: center;
+}
+#newConnection h3{
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+#newConnection hr{
+    background-color: #203c49;
+    height: 3px;
+    margin-bottom: 20px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+div form{
+    display: block;
+    text-align: center;
+}
+form label, form input{
+    color: #289dd2;
+    text-align: center;
+}
+form label{
+    padding-top: 20px;
+    padding-right: 20px;
+    font-size:large;
+}
+#button{
+    background-color: #203c49;
+    margin-bottom: 20px;
+    padding: 5px;
 }

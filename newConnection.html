@@ -7,18 +7,57 @@
     <link rel="stylesheet" type="text/css" href= "main.css">
 </head>
 <body>
-<header>
-    <img src="images/WomenLogo.png" alt="Women In Computer Science">
-    <nav>
-        <a href="newConnection.html" class="active">Connections</a>
-    </nav>
+    <header>
+        <a href="index.html"><img src="images/WomenLogo.png" alt="Women In Computer Science Logo"></a>
+        <nav id="topNav">
+            <a href="newConnection.html" class="active">Start A New Connection</a>
+            <a href="login.html">Log In</a>
+            <a href="signUp.html">Sign Up</a>
+        </nav>
+        <hr/>
+        <nav id="lowerNav">
+            <a href="connections.html">Connections</a>
+        </nav>
+    </header>
+<main id="newConnection">
+    <h2>Create an event to socialize with like-minding women!</h2>
+    <h3>Please fill out the form below to provide necessary information to create the new connection:</h3>
     <hr/>
-</header>
-<main>
+    <div id="form">
+        <form action="connections.html" method="get"> 
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic"><br><br>
 
+            <label for="host">Host:</label>
+            <input type="text" id="host" name="host"><br><br>
+
+            <label for="details">Details:</label>
+            <input type="text" id="details" name="detials"><br><br>
+
+            <label for="where">Where:</label>
+            <input type="text" id="where" name="where"><br><br>
+
+            <label for="when">When:</label>
+            <input type="date" id="when" name="when"><br><br>
+
+            <label for="start">Start Time:</label>
+            <input type="time" id="start" name="start"><br><br>
+
+            <label for="end">End Time:</label>
+            <input type="time" id="end" name="end"><br><br>
+
+            <label for="attachment">Attachment:</label>
+            <input type="file" id="attachment" name="attachment"><br><br>
+
+            <label for="link">Url:</label>
+            <input type="url" id="link" name="link"><br><br>
+
+            <input type="submit" id="button" value="Create Connection"/>
+        </form>
+    </div>
 </main>
-<footer>
-
+<footer id="footScroll">
+    <p>©Women In Computer Science</p>
 </footer>
 </body>
 </html>

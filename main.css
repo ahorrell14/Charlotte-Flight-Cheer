@@ -75,11 +75,11 @@ p a{
     float: right;
     padding-right: 40px;
 }
-#connectionInformation button{
+#connectionButtons{
     background-color: #203c49;
-    color: #289dd2;
     padding: 5px;
     margin: 20px;
+    position: absolute;
 }
 #connectionInformation img{
     float: left;

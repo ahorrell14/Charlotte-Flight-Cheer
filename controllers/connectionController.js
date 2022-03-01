@@ -1,6 +1,10 @@
+const model = require('../models/connection');
+
 //GET /connections: send all connections to the user
 exports.index = (req, res) => {
-    res.send('send all connections');
+    //res.send('send all connections');
+    let connections = model.find();
+    res.render('./connection/connections', {connections});
 };
 
 //GET /connections/new: send html form for creating a new connection

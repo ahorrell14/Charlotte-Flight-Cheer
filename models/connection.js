@@ -19,4 +19,6 @@ const connections = [
 }
 ];
 
-console.log(connections[0]);
+exports.find = function() {
+    return connections;
+}

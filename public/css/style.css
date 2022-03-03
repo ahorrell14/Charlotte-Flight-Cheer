@@ -13,7 +13,15 @@ footer{
     color: #289dd2;
     padding: 20px;
     width: 100%;
+}
+footer p{
     float: left;
+}
+footer a{
+    float: right;
+    padding-right: 60px;
+    text-decoration: none;
+    color: #289dd2;
 }
 #footScroll{
     position: relative;

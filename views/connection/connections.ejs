@@ -1,10 +1,45 @@
 <%- include('../partials/header.ejs')%>
 <main id="connections">
+    <%let meetingEvents = [];%>
+    <%let workshopEvents = [];%>
+    <%let otherEvents = [];%>
+
     <%if(connections.length) {%>
         <%connections.forEach(connection => {%>
-            <h2><%= connection.type%></h2>
-            <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
-        <%});
+            <%if(connection.type === 'Meeting') {%>
+                <%meetingEvents.push(connection);%>
+            <%} else if(connection.type === 'Workshop') {%>
+                <%workshopEvents.push(connection);%>
+            <%} else {%>
+                <%otherEvents.push(connection);%>
+            <%}});%>
+
+        <h2>Meetings</h2>
+            <%if(meetingEvents.length){%>
+                <%meetingEvents.forEach(connection => {%>
+                    <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
+                <%});
+            } else {%>
+                <h3>No events at this time</h3>
+            <%}%>
+
+        <h2>Workshops</h2>
+            <%if(workshopEvents.length){%>
+                <%workshopEvents.forEach(connection => {%>
+                    <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
+                <%});
+            } else {%>
+                <h3>No events at this time</h3>
+            <%}%>
+        
+        <h2>Other</h2>
+            <%if(otherEvents.length){%>
+                <%otherEvents.forEach(connection => {%>
+                    <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
+                <%});
+            } else {%>
+                <h3>No events at this time</h3>
+            <%}
     } else {%>
         <h2>There are no connections to display.</h2>
     <%}%>

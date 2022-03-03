@@ -89,9 +89,9 @@ p a{
     float: left;
     margin-left: 100px;
     width: 200px;
-    border: 5px solid #203c49;
     padding: 8px;
     margin-bottom: 20px;
+    margin-right: 20px;
 }
 #newConnection h2, #newConnection h3{
     color: #289dd2;

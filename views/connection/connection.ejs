@@ -6,11 +6,14 @@
         <%= connection.content%><br><br>
         <b>Hosted by: <%= connection.host%></b><br><br>
         <b><%= connection.date%></b><br><br>
-        <b><%= connection.time%></b><br><br>
+        <b>Start: <%= connection.start%></b>
+        <b>End: <%= connection.end%></b><br><br>
     </p>
     <div id="connectionButtons">
-        <a href="connections.html"><button type="button">Update</button></a>
-        <a href="connections.html"><button type="button">Delete</button></a> 
+        <form>
+            <button type="submit" formmethod="GET" formaction="/connections/<%= connection.id%>/edit">Update</button>
+            <button type="submit" formmethod="POST" formaction="/connections/<%= connection.id%>?_method=DELETE">Delete</button>
+        </form>
     </div>
 </main>
 <footer>

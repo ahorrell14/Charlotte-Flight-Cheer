@@ -4,7 +4,7 @@
     <h3>Please fill out the form below to provide necessary information to create the new connection:</h3>
     <hr/>
     <div id="form">
-        <form action='/connections' method='POST'> 
+        <form method='POST' action="/connections/<%= connection.id%>?_method=PUT"> 
             <label for="type">Type:</label>
             <select name="type" id="type">
                 <option value="Meeting">Meeting</option>
@@ -12,13 +12,13 @@
             </select><br><br>
 
             <label for="title">Topic:</label>
-            <input type="text" id="title" name="title"><br><br>
+            <input type="text" id="title" name="title" value="<%= connection.title%>"><br><br>
 
             <label for="host">Host:</label>
-            <input type="text" id="host" name="host"><br><br>
+            <input type="text" id="host" name="host" value="<%= connection.host%>"><br><br>
 
             <label for="content">Details:</label>
-            <input type="text" id="content" name="content"><br><br>
+            <input type="text" id="content" name="content" value="<%= connection.content%>"><br><br>
 
             <label for="where">Where:</label>
             <select name="where" id="where">
@@ -36,7 +36,7 @@
             <input type="time" id="end" name="end"><br><br>
 
             <label for="img">Url:</label>
-            <input type="url" id="img" name="img"><br><br>
+            <input type="url" id="img" name="img" value="<%= connection.img%>"><br><br>
 
             <input type="submit" id="button" value="Create Connection"/>
         </form>

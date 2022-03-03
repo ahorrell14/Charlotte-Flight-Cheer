@@ -112,7 +112,7 @@ div form{
     display: block;
     text-align: center;
 }
-form label, form input{
+form label, form input, form select, form textarea{
     color: #289dd2;
     text-align: center;
 }

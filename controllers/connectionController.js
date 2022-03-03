@@ -2,7 +2,6 @@ const model = require('../models/connection');
 
 //GET /connections: send all connections to the user
 exports.index = (req, res) => {
-    //res.send('send all connections');
     let connections = model.find();
     res.render('./connection/connections', {connections});
 };
@@ -19,7 +18,12 @@ exports.create = (req, res) => {
 
 //GET /connections/:id: send details of connection identified by id
 exports.show = (req, res) => {
-    res.send('send connection with id ' + req.params.id);
+    let id = req.params.id;
+    let connection = model.findById(id);
+    if (connection) {
+        res.render('./connection/connection', {connection});
+    }
+    res.status(404).send('Cannot find connection with id ' + id );
 };
 
 //GET /connections/:id/edit: send html form for editing an existing connection

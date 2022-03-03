@@ -1,12 +1,13 @@
 <%- include('../partials/header.ejs')%>
 <main id="connections">
     <%if(connections.length) {%>
-        <h2>Connections</h2>
-        <hr/>
         <%connections.forEach(connection => {%>
+            <h2><%= connection.type%></h2>
             <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
         <%});
     } else {%>
         <h2>There are no connections to display.</h2>
     <%}%>
+</main>
+<footer id="footScroll">
 <%- include('../partials/footer.ejs')%>

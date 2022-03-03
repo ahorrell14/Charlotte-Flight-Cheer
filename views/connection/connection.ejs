@@ -1,39 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Women in Computer Science</title>
-    <!-- link css file -->
-    <link rel="stylesheet" type="text/css" href= "main.css">
-</head>
-<body>
-<header>
-    <a href="index.html"><img src="images/WomenLogo.png" alt="Women In Computer Science Logo"></a>
-    <nav id="topNav">
-        <a href="newConnection.html">Start A New Connection</a>
-        <a href="login.html">Log In</a>
-        <a href="signUp.html">Sign Up</a>
-    </nav>
-    <hr/>
-    <nav id="lowerNav">
-        <a href="connections.html" class="active">Connections</a>
-    </nav>
-</header>
+<%- include('../partials/header.ejs')%>
 <main id="connectionInformation">
-    <h2>Introduction Meeting</h2>
-    <p>Join us on Zoom to meet our team members and learn about our semester goals! <br><br>
-    <b>February 3, 2022</b><br><br>
-    <b>1:00 pm - 2:00 pm</b><br><br>
-    <b>Meeting ID: 353 213 3011</b><br><br>
+    <h2><%= connection.title%></h2>
+    <img src="<%= connection.img%>"alt="<%= connection.imgAlt%>">
+    <p>
+        <%= connection.content%><br><br>
+        <b>Hosted by: <%= connection.host%></b><br><br>
+        <b><%= connection.date%></b><br><br>
+        <b><%= connection.time%></b><br><br>
     </p>
-    <img src="https://sites.uml.edu/vtr/files/2020/05/Zoom-Pro-Annually-2-1024x1024-1.jpg" alt="Zoom logo">
     <div id="connectionButtons">
         <a href="connections.html"><button type="button">Update</button></a>
-        <a href="connections.html"><button type="button">Delete</button></a>
+        <a href="connections.html"><button type="button">Delete</button></a> 
     </div>
 </main>
 <footer>
-    <p>©Women In Computer Science</p>
-</footer>
-</body>
-</html>
+<%- include('../partials/footer.ejs')%>

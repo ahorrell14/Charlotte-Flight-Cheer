@@ -61,6 +61,7 @@ main p, h2, h3{
     margin-top: 40px;
     color: #289dd2;
     margin-right: 30px;
+    margin-bottom: 20px;
 }
 p a{
     margin-left: 80px;
@@ -68,37 +69,29 @@ p a{
     margin-top: 20px;
     text-decoration: none;
 }
-#connections a:hover{
-    color: #203c49;
-}
-#connections hr{
-    background-color: #203c49;
-    margin-left: 40px;
-    margin-right: 1000px;
-    margin-top: 10px;
-}
 #connections a{
     text-decoration: none;
+}
+#connections h2{
+    color: #203c49;
 }
 #connectionInformation{
     text-align: center;
 }
 #connectionInformation p{
-    float: right;
-    padding-right: 40px;
+    position: relative;
 }
 #connectionButtons{
-    background-color: #203c49;
     padding: 5px;
     margin: 20px;
-    position: absolute;
 }
 #connectionInformation img{
     float: left;
-    margin-left: 250px;
+    margin-left: 100px;
     width: 200px;
     border: 5px solid #203c49;
     padding: 8px;
+    margin-bottom: 20px;
 }
 #newConnection h2, #newConnection h3{
     color: #289dd2;

@@ -89,6 +89,10 @@ p a{
 #connectionInformation p{
     position: relative;
 }
+#content{
+    height: 40px;
+    width: 600px;
+}
 #connectionButtons{
     padding: 5px;
     margin: 20px;

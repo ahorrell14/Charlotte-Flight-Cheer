@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const connectionRoutes = require('./routes/connectionRoutes');
 const mainRoutes = require('./routes/mainRoutes');
+const {MongoClient, ConnectionClosedEvent} = require('mongodb');
+const {getCollection} = require('./models/connection');
+const moment = require('moment');
 
 
 //create application
@@ -13,15 +16,27 @@ const app = express();
 //configure application
 let port = 3000;
 let host = 'localhost';
+let url = 'mongodb://localhost:27017';
 app.set('view engine', 'ejs');
 
+//connect to MongoDB
+MongoClient.connect(url)
+.then(client=>{
+    const db = client.db('NBAD');
+    getCollection(db);
+    //start the server
+    app.listen(port, host, () => {
+        console.log('Server is running on port ', port);
+    })
+})
+.catch(err=>console.log(err.message));
 
-//mount middelware
+//mount middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
-
+app.locals.moment = moment;
 
 //set up routes
 app.get('/', (req, res) => {
@@ -46,8 +61,3 @@ app.use((err, req, res, next) => {
     res.render('error', {error:err});
 });
 
-
-//start the server
-app.listen(port, host, () => {
-    console.log('Server is running on port ', port);
-})

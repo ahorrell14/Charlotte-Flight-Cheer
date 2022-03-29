@@ -5,10 +5,10 @@
     <p>
         <%= connection.content%><br><br>
         <b>Hosted by: <%= connection.host%></b><br><br>
-        <b><%= connection.date%></b><br><br>
+        <b>Date: <%= moment(connection.date).format('MM/DD/YYYY')%></b><br><br>
         <b>Location: <%=connection.where%></b><br><br>
-        <b>Start: <%= connection.start%></b>
-        <b>End: <%= connection.end%></b><br><br>
+        <b>Start time: <%= moment(connection.startTime).format('h:mma')%></b><br><br>
+        <b>End time: <%= moment(connection.endTime).format('h:mma')%></b><br><br>
     </p>
     <div id="connectionButtons">
         <form>

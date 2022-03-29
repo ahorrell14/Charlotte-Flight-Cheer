@@ -17,7 +17,7 @@
         <h2>Meetings</h2>
             <%if(meetingEvents.length){%>
                 <%meetingEvents.forEach(connection => {%>
-                    <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
+                    <a href='/connections/<%= connection._id%>'><h3><%= connection.title%></h3></a>
                 <%});
             } else {%>
                 <h3>No events at this time</h3>
@@ -26,7 +26,7 @@
         <h2>Workshops</h2>
             <%if(workshopEvents.length){%>
                 <%workshopEvents.forEach(connection => {%>
-                    <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
+                    <a href='/connections/<%= connection._id%>'><h3><%= connection.title%></h3></a>
                 <%});
             } else {%>
                 <h3>No events at this time</h3>
@@ -35,7 +35,7 @@
         <h2>Other</h2>
             <%if(otherEvents.length){%>
                 <%otherEvents.forEach(connection => {%>
-                    <a href='/connections/<%= connection.id%>'><h3><%= connection.title%></h3></a>
+                    <a href='/connections/<%= connection._id%>'><h3><%= connection.title%></h3></a>
                 <%});
             } else {%>
                 <h3>No events at this time</h3>

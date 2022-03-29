@@ -128,6 +128,9 @@ form label, form input, form select, form textarea{
     color: #289dd2;
     text-align: center;
 }
+form input{
+    border: 1px solid #203c49;
+}
 form label{
     padding-top: 20px;
     padding-right: 20px;

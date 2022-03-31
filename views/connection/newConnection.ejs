@@ -13,13 +13,13 @@
             </select><br><br>
 
             <label for="title">Topic:</label>
-            <input type="text" id="title" name="title"><br><br>
+            <input type="text" id="title" name="title" required><br><br>
 
             <label for="host">Host:</label>
-            <input type="text" id="host" name="host"><br><br>
+            <input type="text" id="host" name="host" required><br><br>
 
             <label for="content">Details:</label>
-            <input type="text" id="content" name="content"><br><br>
+            <input type="text" id="content" name="content" required minlength="10"><br><br>
 
             <label for="where">Where:</label>
             <select name="where" id="where">
@@ -29,13 +29,15 @@
             </select><br><br>
 
             <label for="date">When:</label>
-            <input type="text" id="date" name="date"><br><br>
+            <input type="date" id="date" name="date" required><br><br>
 
-            <label for="start">Start Time:</label>
-            <input type="text" id="start" name="start"><br><br>
+            <label for="startTime">Start Time:</label>
+            <input type="number" id="startTime" name="startTimeHour" required min="1" max="23"> :
+            <input type="number" id="startTime" name="startTimeMinute" required min="-1" max="59"><br><br>
 
-            <label for="end">End Time:</label>
-            <input type="text" id="end" name="end"><br><br>
+            <label for="endTime">End Time:</label>
+            <input type="number" id="startTime" name="endTimeHour" required min="1" max="23"> :
+            <input type="number" id="startTime" name="endTimeMinute" required min="-1" max="59"><br><br>
 
             <label for="img">Url:</label>
             <input type="url" id="img" name="img"><br><br>

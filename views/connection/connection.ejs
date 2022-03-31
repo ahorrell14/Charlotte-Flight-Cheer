@@ -7,15 +7,15 @@
         <b>Hosted by: <%= connection.host%></b><br><br>
         <b>Date: <%= moment(connection.date).format('MM/DD/YYYY')%></b><br><br>
         <b>Location: <%=connection.where%></b><br><br>
-        <b>Start time: <%= moment(connection.startTime).format('h:mma')%></b><br><br>
-        <b>End time: <%= moment(connection.endTime).format('h:mma')%></b><br><br>
+        <b>Start time: <%= connection.startTimeHour%>:<%= connection.startTimeMinute%></b><br><br>
+        <b>End time: <%= connection.endTimeHour%>:<%= connection.endTimeMinute%></b><br><br>
     </p>
     <div id="connectionButtons">
         <form>
-            <button type="submit" formmethod="GET" formaction="/connections/<%= connection.id%>/edit">Update</button>
-            <button type="submit" formmethod="POST" formaction="/connections/<%= connection.id%>?_method=DELETE">Delete</button>
+            <button type="submit" formmethod="GET" formaction="/connections/<%= connection._id%>/edit">Update</button>
+            <button type="submit" formmethod="POST" formaction="/connections/<%= connection._id%>?_method=DELETE">Delete</button>
         </form>
     </div>
 </main>
-<footer>
+<footer id="footScroll">
 <%- include('../partials/footer.ejs')%>

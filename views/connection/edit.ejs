@@ -4,7 +4,7 @@
     <h3>Please fill out the form below to provide necessary information to create the new connection:</h3>
     <hr/>
     <div id="form">
-        <form method='POST' action="/connections/<%= connection.id%>?_method=PUT"> 
+        <form method='POST' action="/connections/<%= connection._id%>?_method=PUT"> 
             <label for="type">Type:</label>
             <select name="type" id="type">
                 <option value="Meeting">Meeting</option>
@@ -29,13 +29,13 @@
             </select><br><br>
 
             <label for="date">When:</label>
-            <input type="text" id="date" name="date" value="<%= connection.date%>"><br><br>
+            <input type="date" id="date" name="date" value="<%= moment(connection.date).format('MM/DD/YYYY')%>"><br><br>
 
-            <label for="start">Start Time:</label>
-            <input type="text" id="start" name="start" value="<%= connection.start%>"><br><br>
+            <label for="startTime">Start Time:</label>
+            <input type="time" id="startTime" name="startTime" value="<%= moment(connection.startTime).format('h:mma')%>"><br><br>
 
-            <label for="end">End Time:</label>
-            <input type="text" id="end" name="end" value="<%= connection.end%>"><br><br>
+            <label for="endTime">End Time:</label>
+            <input type="time" id="endTime" name="endTime" value="<%= moment(connection.endTime).format('h:mma')%>"><br><br>
 
             <label for="img">Url:</label>
             <input type="url" id="img" name="img" value="<%= connection.img%>"><br><br>

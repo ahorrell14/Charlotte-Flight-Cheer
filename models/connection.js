@@ -1,49 +1,20 @@
-const e = require('express');
-const {v4: uuid} = require('uuid');
-const {ObjectId} = require('mongodb');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-//need a reference variable to the connections collection in mongodb
-let connections;
-exports.getCollection = db => {
-    connections = db.collection('connections');
-}
+const connectionSchema = new Schema ({
+    type: {type: String, require: [true, 'Type is required']},
+    title: {type: String, require: [true, 'Title is required']},
+    host: {type: String, require: [true, 'Host is required']},
+    content: {type: String, require: [true, 'Content is required'], minlength: [10, 'The content must be atleast 10 characters']},
+    where: {type: String, require: [true, 'Where is required']},
+    date: {type: Date, require: [true, 'Date is required']},
+    startTimeHour: {type: Number, require: [true, 'Start time is required'], min: [1, 'The hour amount must be atleast greater than 0'], max: [23, 'The hour amount must be less than 23']},
+    startTimeMinute: {type: Number, require: [true, 'Start time is required'], min: [-1, 'The minute amount must be atleast greater than -1'], max: [59, 'The minute amount must be less than 59']},
+    endTimeHour: {type: Number, require: [true, 'End time is required'], min: [1, 'The hour amount must be atleast greater than 0'], max: [23, 'The hour amount must be less than 23']},
+    endTimeMinute: {type: Number, require: [true, 'End time is required'], min: [-1, 'The minute amount must be atleast greater than -1'], max: [59, 'The minute amount must be less than 59']},
+    img: {type: String},
+    imgAlt: {type: String}
+});
 
-exports.find = function() {
-    return connections.find().toArray();
-};
-
-exports.findById = function(id) {
-    return connections.findOne({_id: ObjectId(id)});
-};
-
-exports.save = function (connection) {
-    connections.insertOne(connection);
-};
-
-exports.updateById = function(id, newConnection) {
-    let connection = connections.find(connection=>connection.id === id);
-    if (connection) {
-        connection.type = newConnection.type;
-        connection.title = newConnection.title;
-        connection.host = newConnection.host;
-        connection.content = newConnection.content;
-        connection.where = newConnection.where;
-        connection.date = newConnection.date;
-        connection.start = newConnection.start;
-        connection.end = newConnection.end;
-        connection.img = newConnection.img;
-        return true;
-    } else {
-        return false;
-    }
-}
-
-exports.deleteById = function(id) {
-    let index = connections.findIndex(connection => connection.id === id);
-    if (index !== -1) {
-        connections.splice(index, 1);
-        return true;
-    } else {
-        return false;
-    }
-}
+//collection name is connections in the database
+module.exports = mongoose.model('Connection', connectionSchema);

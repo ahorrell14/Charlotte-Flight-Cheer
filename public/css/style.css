@@ -120,6 +120,9 @@ p a{
     margin-left: 80px;
     margin-right: 80px;
 }
+#startTime, #endTime{
+    width: 30px;
+}
 div form{
     display: block;
     text-align: center;

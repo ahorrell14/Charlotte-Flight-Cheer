@@ -14,10 +14,18 @@ exports.new = (req, res) => {
 };
 
 //POST /connections: create a new connection
-exports.create = (req, res) => {
-    let connection = req.body;
-    model.save(connection);
-    res.redirect('/connections');
+exports.create = (req, res, next) => {
+    let connection = new model(req.body); //create a new connection document
+    connection.save() //insert connection into the database
+    .then((connection) => {
+        res.redirect('/connections');
+    })
+    .catch(err=>{
+        if(err.name === 'ValidationError') {
+            err.status = 400;
+        }
+        next(err)
+    });
 };
 
 //GET /connections/:id: send details of connection identified by id
@@ -39,14 +47,17 @@ exports.show = (req, res, next) => {
 //GET /connections/:id/edit: send html form for editing an existing connection
 exports.edit = (req, res, next) => {
     let id = req.params.id;
-    let connection = model.findById(id);
-    if (connection) {
-        res.render('./connection/edit', {connection});
-    } else {
-        let err = new Error('Cannot find a connection with id ' + id);
-        err.status = 404;
-        next(err);
-    }
+    model.findById(id)
+    .then(connection => {
+        if (connection) {
+            res.render('./connection/edit', {connection});
+        } else {
+            let err = new Error('Cannot find a connection with id ' + id);
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err=>next(err));
 };
 
 //PUT /connections/:id: update the connection identified by id
@@ -54,13 +65,12 @@ exports.update = (req, res, next) => {
     let connection = req.body;
     let id = req.params.id;
 
-    if (model.updateById(id, connection)) {
+    model.updateById(id, connection)
+    .then(result => {
+        console.log(result);
         res.redirect('/connections/'+id);
-    } else {
-        let err = new Error('Cannot find a connection with id ' + id);
-        err.status = 404;
-        next(err);
-    }
+    })
+    .catch(err=>next(err));
 };
 
 //DELETE /connections/:id: delete the connection identified by id

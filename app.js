@@ -4,8 +4,7 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const connectionRoutes = require('./routes/connectionRoutes');
 const mainRoutes = require('./routes/mainRoutes');
-const {MongoClient, ConnectionClosedEvent} = require('mongodb');
-const {getCollection} = require('./models/connection');
+const mongoose = require('mongoose');
 const moment = require('moment');
 
 
@@ -16,18 +15,16 @@ const app = express();
 //configure application
 let port = 3000;
 let host = 'localhost';
-let url = 'mongodb://localhost:27017';
+let url = 'mongodb://localhost:27017/NBAD';
 app.set('view engine', 'ejs');
 
 //connect to MongoDB
-MongoClient.connect(url)
-.then(client=>{
-    const db = client.db('NBAD');
-    getCollection(db);
+mongoose.connect(url)
+.then(() => {
     //start the server
     app.listen(port, host, () => {
-        console.log('Server is running on port ', port);
-    })
+        console.log('Server is running on port', port);
+        });
 })
 .catch(err=>console.log(err.message));
 

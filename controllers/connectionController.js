@@ -16,6 +16,7 @@ exports.new = (req, res) => {
 //POST /connections: create a new connection
 exports.create = (req, res, next) => {
     let connection = new model(req.body); //create a new connection document
+    
     connection.save() //insert connection into the database
     .then((connection) => {
         res.redirect('/connections');
@@ -31,10 +32,16 @@ exports.create = (req, res, next) => {
 //GET /connections/:id: send details of connection identified by id
 exports.show = (req, res, next) => {
     let id = req.params.id;
+    //an objectId is a 24-bit Hex string
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid connection id');
+        err.status = 400;
+        return next(err);
+    }
     model.findById(id)
     .then(connection => {
         if (connection) {
-            res.render('./connection/connection', {connection});
+            return res.render('./connection/connection', {connection});
         } else {
             let err = new Error('Cannot find a connection with id ' + id);
             err.status = 404;
@@ -47,6 +54,13 @@ exports.show = (req, res, next) => {
 //GET /connections/:id/edit: send html form for editing an existing connection
 exports.edit = (req, res, next) => {
     let id = req.params.id;
+    //an objectId is a 24-bit Hex string
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid connection id');
+        err.status = 400;
+        return next(err);
+    }
+    
     model.findById(id)
     .then(connection => {
         if (connection) {
@@ -64,23 +78,51 @@ exports.edit = (req, res, next) => {
 exports.update = (req, res, next) => {
     let connection = req.body;
     let id = req.params.id;
+    //an objectId is a 24-bit Hex string
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid connection id');
+        err.status = 400;
+        return next(err);
+    }
 
-    model.updateById(id, connection)
-    .then(result => {
-        console.log(result);
-        res.redirect('/connections/'+id);
+    model.findByIdAndUpdate(id, connection, {useFindAndModify: false, runValidators: true})
+    .then(connection => {
+        if(connection){
+            res.redirect('/connections/'+id);
+        } else {
+            let err = new Error('Cannot find a connection with id ' + id);
+            err.status = 404;
+            next(err);
+        }
     })
-    .catch(err=>next(err));
+    .catch(err=>{
+        if(err.name === 'ValidationError'){
+            err.status = 400;
+        }
+        next(err)
+    });
 };
 
 //DELETE /connections/:id: delete the connection identified by id
 exports.delete = (req, res, next) => {
     let id = req.params.id;
-    if (model.deleteById(id)) {
-        res.redirect('/connections');
-    } else {
-        let err = new Error('Cannot find a connection with id ' + id);
-        err.status = 404;
-        next(err);
+
+    //an objectId is a 24-bit Hex string
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid connection id');
+        err.status = 400;
+        return next(err);
     }
+
+    model.findByIdAndDelete(id, {useFindAndModify: false})
+    .then(connection => {
+        if(connection) {
+            res.redirect('/connections');
+        } else {
+            let err = new Error('Cannot find a connection with id ' + id);
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err=>next(err));
 };

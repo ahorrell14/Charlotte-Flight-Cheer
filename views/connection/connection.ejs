@@ -7,8 +7,10 @@
         <b>Hosted by: <%= connection.host%></b><br><br>
         <b>Date: <%= moment(connection.date).format('MM/DD/YYYY')%></b><br><br>
         <b>Location: <%=connection.where%></b><br><br>
-        <b>Start time: <%= connection.startTimeHour%>:<%= connection.startTimeMinute%></b><br><br>
-        <b>End time: <%= connection.endTimeHour%>:<%= connection.endTimeMinute%></b><br><br>
+        <b>Start time: <%= connection.startTimeHour%>:<%= connection.startTimeMinute%></b>
+        <b><%= connection.startTimePeriod%></b><br><br>
+        <b>End time: <%= connection.endTimeHour%>:<%= connection.endTimeMinute%></b>
+        <b><%= connection.endTimePeriod%></b><br><br>
     </p>
     <div id="connectionButtons">
         <form>
@@ -17,5 +19,5 @@
         </form>
     </div>
 </main>
-<footer id="footScroll">
+<footer>
 <%- include('../partials/footer.ejs')%>

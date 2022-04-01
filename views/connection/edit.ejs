@@ -32,12 +32,20 @@
             <input type="date" id="date" name="date" value="<%= connection.date%>" required><br><br>
 
             <label for="startTime">Start Time:</label>
-            <input type="number" id="startTime" name="startTimeHour" required min="1" max="23" value="<%= connection.startTimeHour%>"> :
-            <input type="number" id="startTime" name="startTimeMinute" required min="-1" max="59" value="<%= connection.startTimeMinute%>"><br><br>
+            <input type="number" id="startTime" name="startTimeHour" required min="1" max="12" value="<%= connection.startTimeHour%>"> :
+            <input type="number" id="startTime" name="startTimeMinute" required min="-1" max="59" value="<%= connection.startTimeMinute%>">
+            <select name="timePeriod" name="timePeriod">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select><br><br>
 
             <label for="endTime">End Time:</label>
-            <input type="number" id="startTime" name="endTimeHour" required min="1" max="23" value="<%= connection.endTimeHour%>"> :
-            <input type="number" id="startTime" name="endTimeMinute" required min="-1" max="59" value="<%= connection.endTimeMinute%>"><br><br>
+            <input type="number" id="startTime" name="endTimeHour" required min="1" max="12" value="<%= connection.endTimeHour%>"> :
+            <input type="number" id="startTime" name="endTimeMinute" required min="-1" max="59" value="<%= connection.endTimeMinute%>">
+            <select name="timePeriod" name="timePeriod">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select><br><br>
 
             <label for="img">Url:</label>
             <input type="url" id="img" name="img" value="<%= connection.img%>"><br><br>

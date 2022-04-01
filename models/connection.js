@@ -10,8 +10,10 @@ const connectionSchema = new Schema ({
     date: {type: Date, require: [true, 'Date is required']},
     startTimeHour: {type: Number, require: [true, 'Start time is required'], min: [1, 'The hour amount must be atleast greater than 0'], max: [23, 'The hour amount must be less than 23']},
     startTimeMinute: {type: Number, require: [true, 'Start time is required'], min: [-1, 'The minute amount must be atleast greater than -1'], max: [59, 'The minute amount must be less than 59']},
+    startTimePeriod: {type: String, require: [true, 'Time period is required']},
     endTimeHour: {type: Number, require: [true, 'End time is required'], min: [1, 'The hour amount must be atleast greater than 0'], max: [23, 'The hour amount must be less than 23']},
     endTimeMinute: {type: Number, require: [true, 'End time is required'], min: [-1, 'The minute amount must be atleast greater than -1'], max: [59, 'The minute amount must be less than 59']},
+    endTimePeriod: {type: String, require: [true, 'Start time period is required']},
     img: {type: String},
     imgAlt: {type: String}
 });

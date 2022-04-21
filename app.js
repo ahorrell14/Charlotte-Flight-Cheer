@@ -32,7 +32,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
-app.locals.moment = moment;
 
 app.use('/connections', connectionRoutes);
 app.use('/', mainRoutes);

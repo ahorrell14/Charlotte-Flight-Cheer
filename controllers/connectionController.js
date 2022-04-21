@@ -1,5 +1,4 @@
 const model = require('../models/connection');
-const moment = require('moment');
 
 //GET /connections: send all connections to the user
 exports.index = (req, res, next) => {

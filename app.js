@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const connectionRoutes = require('./routes/connectionRoutes');
 const mainRoutes = require('./routes/mainRoutes');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 
 //create application
@@ -32,6 +33,21 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
+app.use(session({
+    secret: 'jfijefweoflamsfklme',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 60*60*1000} 
+}));
+app.use((req, res, next) => {
+    if(!req.session.counter) {
+        req.session.counter = 1;
+    } else {
+        req.session.counter++;
+    }
+    console.log(req.session);
+    next();
+});
 
 app.use('/connections', connectionRoutes);
 app.use('/', mainRoutes);

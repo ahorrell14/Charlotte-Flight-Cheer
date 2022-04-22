@@ -11,7 +11,6 @@ const userSchema = new Schema({
 
 //replace plaintext password with hashed password
 //pre middleware
-
 userSchema.pre('save', function(next){
     let user = this;
     if (!user.isModified('password')){
@@ -25,5 +24,10 @@ userSchema.pre('save', function(next){
         .catch(err=>next(err));
     }
 });
+
+//method to compare login password to hash password
+userSchema.methods.comparePassword = function(loginPassword) {
+    return bcrypt.compare(loginPassword, this.password);
+}
 
 module.exports = mongoose.model('User', userSchema);

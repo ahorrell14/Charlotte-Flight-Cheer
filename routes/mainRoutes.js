@@ -21,4 +21,10 @@ router.post('/', controller.create);
 //GET /login: show login form
 router.get('/login', controller.login);
 
+//POST /login: verify user through login form
+router.post('/login', controller.loginAuth);
+
+//GET /profile: show user profile page
+router.get('/profile', controller.profile);
+
 module.exports = router;

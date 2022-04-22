@@ -26,9 +26,40 @@ exports.create = (req, res, next) => {
     user.save()
     .then(()=>res.redirect('/login'))
     .catch(err=>next(err));
-}
+};
 
 //GET /login: show login form
 exports.login = (req, res) => {
     res.render('./main/login');
 };
+
+//POST /login: authenticate login form
+exports.loginAuth = (req, res, next) => {
+    let email = req.body.email;
+    let password = req.body.password;
+
+    //get user that matches the email
+    User.findOne({email: email})
+    .then(user => {
+        if (user) {
+            //user found in database
+            user.comparePassword(password)
+            .then(result => {
+                if (result){
+                    res.redirect('/profile');
+                } else {
+                    console.log('wrong password');
+                    res.redirect('/login');
+                }
+            })
+        } else {
+            console.log('wrong email');
+            res.redirect('/login');
+        }
+    })
+    .catch(err=>next(err));
+}
+
+exports.profile = (req, res) => {
+    res.render('./main/profile')
+}

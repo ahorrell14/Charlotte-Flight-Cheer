@@ -27,4 +27,7 @@ router.post('/login', controller.loginAuth);
 //GET /profile: show user profile page
 router.get('/profile', controller.profile);
 
+//GET /logout: logout the user
+router.get('/logout', controller.logout);
+
 module.exports = router;

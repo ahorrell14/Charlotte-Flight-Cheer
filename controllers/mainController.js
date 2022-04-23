@@ -34,7 +34,7 @@ exports.login = (req, res) => {
 };
 
 //POST /login: authenticate login form
-exports.loginAuth = (req, res, next) => {
+exports.loginAuth = (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
 
@@ -46,6 +46,7 @@ exports.loginAuth = (req, res, next) => {
             user.comparePassword(password)
             .then(result => {
                 if (result){
+                    req.session.user = user._id;
                     res.redirect('/profile');
                 } else {
                     console.log('wrong password');
@@ -58,8 +59,23 @@ exports.loginAuth = (req, res, next) => {
         }
     })
     .catch(err=>next(err));
-}
+};
 
-exports.profile = (req, res) => {
-    res.render('./main/profile')
-}
+exports.profile = (req, res, next) => {
+    let id = req.session.user;
+    User.findById(id)
+    .then(user => {
+        res.render('./main/profile', {user});
+    })
+    .catch(err=>next(err));
+};
+
+exports.logout = (req, res, next) => {
+    req.session.destroy(err=>{
+        if(err) {
+           return next(err);
+        } else {
+           res.redirect('/');
+        }
+    });
+};

@@ -1,4 +1,5 @@
 const model = require('../models/connection');
+const moment = require('moment');
 
 //GET /connections: send all connections to the user
 exports.index = (req, res, next) => {
@@ -15,7 +16,7 @@ exports.new = (req, res) => {
 //POST /connections: create a new connection
 exports.create = (req, res, next) => {
     let connection = new model(req.body); //create a new connection document
-    
+    connection.host = req.session.user;
     connection.save() //insert connection into the database
     .then((connection) => {
         res.redirect('/connections');
@@ -37,7 +38,7 @@ exports.show = (req, res, next) => {
         err.status = 400;
         return next(err);
     }
-    model.findById(id)
+    model.findById(id).populate('host', 'firstName lastName')
     .then(connection => {
         if (connection) {
             return res.render('./connection/connection', {connection});

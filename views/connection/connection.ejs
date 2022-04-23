@@ -4,7 +4,7 @@
     <img src="<%= connection.img%>" alt="<%= connection.imgAlt%>">
     <p>
         <%= connection.content%><br><br>
-        <b>Hosted by: <%= connection.host%></b><br><br>
+        <b>Hosted by: <%= connection.host.firstName + ' ' + connection.host.lastName%></b><br><br>
         <b>Date: <%= moment(connection.date).format('MM/DD/YYYY')%></b><br><br>
         <b>Location: <%=connection.where%></b><br><br>
         <b>Start time: <%= connection.startTimeHour%>:<%= connection.startTimeMinute%></b>

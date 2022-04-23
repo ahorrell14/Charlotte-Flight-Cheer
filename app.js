@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
+const moment = require('moment');
 
 
 //create application
@@ -35,6 +36,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
+app.locals.moment = moment;
 app.use(session({
     secret: 'jfijefweoflamsfklme',
     resave: false,

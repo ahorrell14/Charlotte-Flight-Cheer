@@ -153,3 +153,19 @@ form label{
     margin-left: 30%; 
     margin-top: 20px;
 }
+#profile h2{
+    color: #203c49;
+    text-align: center;
+}
+#profile h3{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #203c49;
+}
+#profile a h3{
+    color: #289dd2;
+}
+#profile a{
+    text-decoration: none;
+}

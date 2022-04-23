@@ -12,12 +12,16 @@
         <b>End time: <%= connection.endTimeHour%>:<%= connection.endTimeMinute%></b>
         <b><%= connection.endTimePeriod%></b><br><br>
     </p>
-    <div id="connectionButtons">
-        <form>
-            <button type="submit" formmethod="GET" formaction="/connections/<%= connection._id%>/edit">Update</button>
-            <button type="submit" formmethod="POST" formaction="/connections/<%= connection._id%>?_method=DELETE">Delete</button>
-        </form>
-    </div>
+    <%if(user == connection.host._id) {%>
+        <div id="connectionButtons">
+            <form>
+                <button type="submit" formmethod="GET" formaction="/connections/<%= connection._id%>/edit">Update</button>
+                <button type="submit" formmethod="POST" formaction="/connections/<%= connection._id%>?_method=DELETE">Delete</button>
+            </form>
+        </div>
+    </main>
+    <footer id="footScroll">
+    <%}%> 
 </main>
 <footer>
 <%- include('../partials/footer.ejs')%>

@@ -53,23 +53,10 @@ exports.show = (req, res, next) => {
 
 //GET /connections/:id/edit: send html form for editing an existing connection
 exports.edit = (req, res, next) => {
-    let id = req.params.id;
-    //an objectId is a 24-bit Hex string
-    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid connection id');
-        err.status = 400;
-        return next(err);
-    }
-    
+    let id = req.params.id;  
     model.findById(id)
     .then(connection => {
-        if (connection) {
-            res.render('./connection/edit', {connection});
-        } else {
-            let err = new Error('Cannot find a connection with id ' + id);
-            err.status = 404;
-            next(err);
-        }
+        res.render('./connection/edit', {connection});
     })
     .catch(err=>next(err));
 };
@@ -78,22 +65,9 @@ exports.edit = (req, res, next) => {
 exports.update = (req, res, next) => {
     let connection = req.body;
     let id = req.params.id;
-    //an objectId is a 24-bit Hex string
-    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid connection id');
-        err.status = 400;
-        return next(err);
-    }
-
     model.findByIdAndUpdate(id, connection, {useFindAndModify: false, runValidators: true})
     .then(connection => {
-        if(connection){
-            res.redirect('/connections/'+id);
-        } else {
-            let err = new Error('Cannot find a connection with id ' + id);
-            err.status = 404;
-            next(err);
-        }
+        res.redirect('/connections/'+id);
     })
     .catch(err=>{
         if(err.name === 'ValidationError'){
@@ -106,23 +80,9 @@ exports.update = (req, res, next) => {
 //DELETE /connections/:id: delete the connection identified by id
 exports.delete = (req, res, next) => {
     let id = req.params.id;
-
-    //an objectId is a 24-bit Hex string
-    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid connection id');
-        err.status = 400;
-        return next(err);
-    }
-
     model.findByIdAndDelete(id, {useFindAndModify: false})
     .then(connection => {
-        if(connection) {
-            res.redirect('/connections');
-        } else {
-            let err = new Error('Cannot find a connection with id ' + id);
-            err.status = 404;
-            next(err);
-        }
+        res.redirect('/connections');
     })
     .catch(err=>next(err));
 };

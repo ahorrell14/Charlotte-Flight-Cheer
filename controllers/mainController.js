@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Connection = require('../models/connection');
 
 //GET /: index page
 exports.index = (req, res) => {
@@ -17,7 +18,7 @@ exports.contact = (req, res) => {
 
 //GET /signup: show signup form
 exports.signup = (req, res) => {
-    res.render('./main/signUp');
+    return res.render('./main/signUp');
 };
 
 //POST /: create new user
@@ -41,7 +42,7 @@ exports.create = (req, res, next) => {
 
 //GET /login: show login form
 exports.login = (req, res) => {
-    res.render('./main/login');
+    return res.render('./main/login');
 };
 
 //POST /login: authenticate login form
@@ -52,34 +53,35 @@ exports.loginAuth = (req, res) => {
     //get user that matches the email
     User.findOne({email: email})
     .then(user => {
-        if (user) {
-            //user found in database
-            user.comparePassword(password)
-            .then(result => {
-                if (result){
-                    req.session.user = user._id;
-                    req.flash('success', 'You have successfully logged in!');
-                    res.redirect('/profile');
-                } else {
-                    console.log('wrong password');
-                    req.flash('error', 'Wrong password!');
-                    res.redirect('/login');
-                }
-            })
-        } else {
-            console.log('wrong email');
-            req.flash('error', 'Wrong email address!');
-            res.redirect('/login');
-        }
+    if (user) {
+        //user found in database
+        user.comparePassword(password)
+        .then(result => {
+            if (result){
+                req.session.user = user._id;
+                req.flash('success', 'You have successfully logged in!');
+                res.redirect('/profile');
+            } else {
+                console.log('wrong password');
+                req.flash('error', 'Wrong password!');
+                res.redirect('/login');
+            }
+        })
+    } else {
+        console.log('wrong email');
+        req.flash('error', 'Wrong email address!');
+        res.redirect('/login');
+    }
     })
     .catch(err=>next(err));
 };
 
 exports.profile = (req, res, next) => {
     let id = req.session.user;
-    User.findById(id)
-    .then(user => {
-        res.render('./main/profile', {user});
+    Promise.all([User.findById(id), Connection.find({host: id})])
+    .then(results => {
+        const [user, connections] = results;
+        res.render('./main/profile', {user, connections});
     })
     .catch(err=>next(err));
 };

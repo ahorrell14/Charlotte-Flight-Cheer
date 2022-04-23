@@ -11,15 +11,20 @@
     <a href='/'><img src='/images/WomenLogo.png' alt="Women In Computer Science Logo"></a>
     <nav id="topNav">
         <a href='/'>Home</a>
-        <a href="/login">Login</a>
-        <a href="/signup">Sign Up</a>
-        <a href="/logout">Logout</a>
-        <a href="/profile">Profile</a>
+        <%if(!user) {%>
+            <a href="/signup">Sign Up</a>
+            <a href="/login">Login</a>
+        <%} else {%>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        <%}%>
     </nav>
     <hr/>
     <nav id="lowerNav">
         <a href='/connections'>Connections</a>
-        <a href="/connections/new">Start A New Connection</a>
+        <%if(user) {%>
+            <a href="/connections/new">Start A New Connection</a>
+        <%}%>
     </nav>
 </header>
 

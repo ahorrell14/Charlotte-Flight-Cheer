@@ -22,3 +22,19 @@
         <a href="/connections/new">Start A New Connection</a>
     </nav>
 </header>
+
+<%if(errorMessages.length > 0) {
+    errorMessages.forEach(message=>{%>
+        <div class="message">
+            <%= message%>
+        </div>
+    <%});
+}%>
+
+<%if(successMessages.length > 0) {
+    successMessages.forEach(message=>{%>
+        <div class="message">
+            <%= message%>
+        </div>
+    <%});
+}%>

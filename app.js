@@ -7,6 +7,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
 
 
 //create application
@@ -41,8 +42,13 @@ app.use(session({
     cookie: {maxAge: 60*60*1000},
     store: new MongoStore({mongoUrl: url})
 }));
+
+app.use(flash());
+
 app.use((req, res, next) => {
     console.log(req.session);
+    res.locals.successMessages = req.flash('success');
+    res.locals.errorMessages = req.flash('error');
     next();
 });
 

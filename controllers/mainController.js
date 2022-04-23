@@ -25,7 +25,18 @@ exports.create = (req, res, next) => {
     let user = new User(req.body);
     user.save()
     .then(()=>res.redirect('/login'))
-    .catch(err=>next(err));
+    .catch(err => {
+        if(err.name === 'ValidationError') {
+            req.flash('error', err.message);
+            return res.redirect('/signup');
+        }
+        if(err.code === 11000) {
+            req.flash('error', 'Email address has been used');
+            return res.redirect('/signup');
+        }
+
+        next(err);
+    });
 };
 
 //GET /login: show login form
@@ -47,14 +58,17 @@ exports.loginAuth = (req, res) => {
             .then(result => {
                 if (result){
                     req.session.user = user._id;
+                    req.flash('success', 'You have successfully logged in!');
                     res.redirect('/profile');
                 } else {
                     console.log('wrong password');
+                    req.flash('error', 'Wrong password!');
                     res.redirect('/login');
                 }
             })
         } else {
             console.log('wrong email');
+            req.flash('error', 'Wrong email address!');
             res.redirect('/login');
         }
     })

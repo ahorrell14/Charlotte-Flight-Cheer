@@ -144,3 +144,12 @@ form label{
     margin-bottom: 20px;
     padding: 5px;
 }
+.message{
+    background: #289dd2;
+    color: white;
+    width: 40%;
+    text-align: center;
+    padding: 10px 10px;
+    margin-left: 30%; 
+    margin-top: 20px;
+}

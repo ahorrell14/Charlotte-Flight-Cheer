@@ -65,6 +65,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
     if(!err.status) {
+        console.log(err);
         err.status = 500;
         err.message = ("Internal Server Error");
     }

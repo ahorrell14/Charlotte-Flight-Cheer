@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const connectionRoutes = require('./routes/connectionRoutes');
 const mainRoutes = require('./routes/mainRoutes');
+const userRoutes = require('./routes/userRoutes')
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 
 app.use('/connections', connectionRoutes);
 app.use('/', mainRoutes);
+app.use('/users', userRoutes);
 
 app.use((req, res, next) => {
     let err = new Error ('The server cannot locate ' + req.url);

@@ -1,4 +1,5 @@
 const model = require('../models/connection');
+const rsvpModel = require('../models/rsvp');
 const moment = require('moment');
 
 //GET /connections: send all connections to the user
@@ -32,10 +33,19 @@ exports.create = (req, res, next) => {
 //GET /connections/:id: send details of connection identified by id
 exports.show = (req, res, next) => {
     let id = req.params.id;
+    var totalRsvp = 0;
+    rsvpModel.find({connection: id})
+    .then(results => {
+        results.forEach(connection => {
+            totalRsvp++;
+        });
+        
+    })
+
     model.findById(id).populate('host', 'firstName lastName')
     .then(connection => {
         if (connection) {
-            return res.render('./connection/connection', {connection});
+            return res.render('./connection/connection', {connection, totalRsvp});
         } else {
             let err = new Error('Cannot find a connection with id ' + id);
             err.status = 404;
@@ -79,4 +89,44 @@ exports.delete = (req, res, next) => {
         res.redirect('/connections');
     })
     .catch(err=>next(err));
+};
+
+//RSVP /connection/:id/rsvp: add rsvp
+exports.addRsvp = (req, res, next) => {
+    let user = req.session.user;
+    let connection = req.params.id;
+    let status = 'Yes';
+    let query = {user: user, connection: connection},
+        update = {status},
+        options = {upsert: true, new: true, useFindAndModify: false, runValidators: true}
+    rsvpModel.findOneAndUpdate(query, update, options)
+    .then(result => {
+        res.redirect('/connections');
+    })
+    .catch(err=>{
+        if(err.name === 'ValidationError'){
+            err.status = 400;
+        }
+        next(err)
+    });
+};
+
+//RSVP /connection/:id/rsvp: remove rsvp
+exports.removeRsvp = (req, res, next) => {
+    let user = req.session.user;
+    let connection = req.params.id;
+    let status = 'No';
+    let query = {user: user, connection: connection},
+        update = {status},
+        options = {upsert: true, new: true, useFindAndModify: false, runValidators: true}
+    rsvpModel.findOneAndUpdate(query, update, options)
+    .then(result => {
+        res.redirect('/connections');
+    })
+    .catch(err=>{
+        if(err.name === 'ValidationError'){
+            err.status = 400;
+        }
+        next(err)
+    });
 };

@@ -1,13 +1,49 @@
 <%- include('../partials/header.ejs')%>
 <main id="profile">
-    <h2>Welcome, <%= user.firstName + " " + user.lastName%>!</h2>
+    <h2><%= user.firstName + " " + user.lastName%>'s Connections!</h2>
     <%if(connections.length) {%>
-        <%connections.forEach(connection => {%>
-            <a href='/connections/<%= connection._id%>'><h3><%= connection.title%></h3></a>
-        <%}); 
-    } else {%>
+        <table id="connectionTable">
+            <tr>
+                <th>Connection</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            <%connections.forEach(connection => {%>
+                <tr>
+                    <td><%= connection.title%></td>
+                    <td><%= connection.type%></td>
+                    <td>
+                        <form>
+                            <button type="submit" formmethod="GET" formaction="/connections/<%= connection._id%>/edit">Update</button>
+                            <button type="submit" formmethod="POST" formaction="/connections/<%= connection._id%>?_method=DELETE">Delete</button>
+                        </form>
+                    </td>
+
+                </tr>
+            <%})%>
+        </table> 
+    <%} else {%>
         <h3>You have not created any connections</h3>
     <%}%>
+    <h2><%= user.firstName + " " + user.lastName%>'s RSVP's!</h2>
+    <%if(rsvp.length) {%>
+        <table id="rsvpTable">
+            <tr>
+                <th>Connection</th>
+                <th>Type</th>
+                <th>Going?</th>
+            </tr>
+            <%rsvp.forEach(rsvp => {%>
+            <tr>
+                <td><%= rsvp.connection.title%></td>
+                <td><%= rsvp.connection.type%></td>
+                <td><%= rsvp.status%></td>
+            </tr>
+            <%})%>
+        </table>
+    <%} else {%>
+        <h3>You have not RSVP'd for anything</h3>
+    <%}%>
 </main>
-<footer>
+<footer id="footScroll">
 <%- include('../partials/footer.ejs')%>

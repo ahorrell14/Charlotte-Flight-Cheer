@@ -19,9 +19,20 @@
                 <button type="submit" formmethod="POST" formaction="/connections/<%= connection._id%>?_method=DELETE">Delete</button>
             </form>
         </div>
-    </main>
-    <footer id="footScroll">
-    <%}%> 
+    <%} else {%>
+        <%if(totalRsvp == 1) {%>
+            <h3><%= totalRsvp%> member RSVP'd</h3>
+        <%} else {%>
+            <h3><%= totalRsvp%> members RSVP'd</h3>
+        <%}%>
+        <h3>RSVP to attend!</h3>
+        <div id="connectionButtons">
+            <form>
+                <button type="submit" formmethod="POST" formaction="/connections/<%= connection._id%>/rsvpYes?_method=POST">Yes</button>
+                <button type="submit" formmethod="POST" formaction="/connections/<%= connection._id%>/rsvpNo?_method=POST">No</button>
+            </form>
+        </div>
+    <%}%>
 </main>
-<footer>
+<footer id="footScroll">
 <%- include('../partials/footer.ejs')%>
